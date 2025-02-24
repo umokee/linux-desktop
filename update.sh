@@ -4,7 +4,7 @@ BUILDER_DIR="$HOME/projects/linux-desktop"
 CONFIG_DIR="$HOME/.config"
 
 log() {
-    echo -e "/n[+] $1"
+    echo -e "[+] $1"
 }
 
 update_configs() {
