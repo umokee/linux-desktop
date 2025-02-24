@@ -1,0 +1,16 @@
+[font]
+builtin_box_drawing = true
+size = 10.0
+
+[window]
+dynamic_title = true
+opacity = 0.92
+title = "Alacritty"
+
+[selection]
+save_to_clipboard = true
+
+[mouse]
+bindings = [
+        { mouse = "Right", action = "Paste" },
+]
