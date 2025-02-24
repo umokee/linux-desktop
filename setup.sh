@@ -1,6 +1,6 @@
 #!/bin/bash
 
-CONFIG_REPO=""
+CONFIG_REPO="https://github.com/umokee/linux-desktop"
 TEMP_DIR="/tmp/bspwm-setup"
 CONFIG_DIR="$HOME/.config"
 
@@ -61,12 +61,21 @@ install_configs_themes() {
         cp -r "$TEMP_DIR/configs/picom" "$CONFIG_DIR"
         cp -r "$TEMP_DIR/configs/redshift" "$CONFIG_DIR"
         cp -r "$TEMP_DIR/configs/wallpapers" "$CONFIG_DIR"
+        cp -r "$TEMP_DIR/configs/gtk-3.0" "$CONFIG_DIR"
     }
 
     copy_themes() {
         echo "Копирование тем..."
         cp -r "$TEMP_DIR/themes/system/.themes" "$HOME"
+        cp -r "$TEMP_DIR/themes/system/.icons" "$HOME"
         cp -r "$TEMP_DIR/themes/plank/themes" "$HOME/.local/share/plank/themes"
+        cp -r "$TEMP_DIR/themes/.gtkrc-2.0" "$HOME"
+    }
+
+    install_fifefox_theme() {
+        echo "Установка темы для firefox..."
+        destination_dir=$(find $HOME/.mozilla/firefox -type d -name "*default-release*" -print -quit)
+        cp -r "$TEMP_DIR/firefox/chrome" "$destination_dir/"
     }
 
     cleanup() {
@@ -78,14 +87,9 @@ install_configs_themes() {
     clone_configs
     copy_configs
     copy_themes
+    install_fifefox_theme
     cleanup
 }
-
-
-
-
-
-
 
 set_settings() {
     log "Применение настроек..."
@@ -148,11 +152,7 @@ mount_disks() {
 
 main() {
     install_packages
-
-    clone_configs
-    copy_configs
-    copy_themes
-    cleanup
+    install_configs_themes
     set_settings
     mount_disks
     log "Установка завершена. Перезагрузи устройство."
