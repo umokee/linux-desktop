@@ -95,6 +95,12 @@ set_settings() {
     log "Применение настроек..."
     xdg-settings set default-web-browser firefox.desktop
     gsettings set net.launchpad.plank.dock.settings:/net/launchpad/plank/docks/dock1/ theme 'macOS Dark'
+    chmod +x "$CONFIG_DIR/bin/get-window-class.sh"
+    chmod +x "$CONFIG_DIR/bin/mic-module.sh"
+    chmod +x "$CONFIG_DIR/bin/powermenu.sh"
+    chmod +x "$CONFIG_DIR/bin/toggle-polybar.sh"
+    chmod +x "$CONFIG_DIR/bspwm/launch.sh"
+    chmod +x "$CONFIG_DIR/polybar/launch.sh"
 }
 
 mount_disks() {
